@@ -1,0 +1,43 @@
+================================================================================
+REPORT VALIDAZIONI DATASET ANAC - APPALTI IA 2023-2025
+Data: 28/01/2026 15:40
+================================================================================
+
+1. CORREZIONI AUTOMATICHE APPLICATE
+-------------------------------------------------------------------------------
+   - CIG B1B36B1A1E: ERRORE CRITICO
+     Campo: importo_lotto
+     Valore originale: €293,893,058.00
+     Valore corretto: €357.85
+     Motivo: Acquisto libri biblioteca (confronto CIG B1AA21EEA3, B1B748D667)
+
+
+2. STATISTICHE IMPORTI
+-------------------------------------------------------------------------------
+   Media: €489,512.38
+   Mediana: €25,000.00
+   Deviazione standard: €9,527,675.32
+   Soglia outlier (3σ): €29,072,538.34
+   Numero outlier identificati: 1
+   Contratti con importo zero: 5
+
+3. VALIDAZIONE DATE
+-------------------------------------------------------------------------------
+   Date future: 0
+   Anni incoerenti: 0
+   Date mancanti: 0
+
+4. CAMPI OBBLIGATORI MANCANTI
+-------------------------------------------------------------------------------
+   Tutti i campi obbligatori sono presenti.
+
+5. OUTLIER PRINCIPALI (Top 10)
+-------------------------------------------------------------------------------
+   1. CIG: B1B36B1A1E
+      PA: UNIVERSITA DEGLI STUDI DI CAGLIARI
+      Importo: €293,893,058.00
+
+
+================================================================================
+FINE REPORT
+================================================================================

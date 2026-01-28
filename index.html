@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Appalti IA ANAC 2023-2025</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    <style>
+        :root {
+            --primary: #0d6efd;
+            --success: #198754;
+            --warning: #ffc107;
+            --danger: #dc3545;
+            --info: #0dcaf0;
+        }
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+        .navbar-brand {
+            font-weight: 700;
+        }
+        .kpi-card {
+            border: none;
+            border-radius: 12px;
+            transition: transform 0.2s;
+        }
+        .kpi-card:hover {
+            transform: translateY(-5px);
+        }
+        .kpi-value {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+        .kpi-label {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            opacity: 0.9;
+        }
+        .chart-container {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        .table-container {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        .badge-settore {
+            font-size: 0.75rem;
+        }
+        .alert-section {
+            margin-top: 30px;
+        }
+        footer {
+            margin-top: 40px;
+            padding: 20px 0;
+            background: #212529;
+            color: white;
+        }
+        .header-section {
+            background: linear-gradient(135deg, #0d6efd 0%, #6610f2 100%);
+            color: white;
+            padding: 40px 0;
+            margin-bottom: 30px;
+        }
+        @media (max-width: 768px) {
+            .kpi-value {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header-section">
+        <div class="container">
+            <h1 class="mb-2">Dashboard Appalti Intelligenza Artificiale</h1>
+            <p class="mb-0 opacity-75">Analisi contratti pubblici ANAC | Periodo 2023-2025 | Ultimo aggiornamento: 28/01/2026</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- KPI Cards -->
+        <div class="row g-3 mb-4">
+            <div class="col-6 col-md-4 col-lg-2">
+                <div class="card kpi-card bg-primary text-white h-100">
+                    <div class="card-body text-center">
+                        <div class="kpi-value">959</div>
+                        <div class="kpi-label">Contratti</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 col-md-4 col-lg-2">
+                <div class="card kpi-card bg-success text-white h-100">
+                    <div class="card-body text-center">
+                        <div class="kpi-value">175.5M</div>
+                        <div class="kpi-label">Valore Totale</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 col-md-4 col-lg-2">
+                <div class="card kpi-card bg-info text-white h-100">
+                    <div class="card-body text-center">
+                        <div class="kpi-value">592</div>
+                        <div class="kpi-label">PA Coinvolte</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 col-md-4 col-lg-2">
+                <div class="card kpi-card bg-warning text-dark h-100">
+                    <div class="card-body text-center">
+                        <div class="kpi-value">183K</div>
+                        <div class="kpi-label">Valore Medio</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 col-md-4 col-lg-2">
+                <div class="card kpi-card bg-success text-white h-100">
+                    <div class="card-body text-center">
+                        <div class="kpi-value">256</div>
+                        <div class="kpi-label">PNRR (26.7%)</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 col-md-4 col-lg-2">
+                <div class="card kpi-card bg-secondary text-white h-100">
+                    <div class="card-body text-center">
+                        <div class="kpi-value">96</div>
+                        <div class="kpi-label">Province</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Top 10 PA -->
+        <div class="chart-container">
+            <h5 class="mb-3">Top 10 Amministrazioni per Spesa</h5>
+            <div style="height: 400px;">
+                <canvas id="chartTop10"></canvas>
+            </div>
+        </div>
+
+        <!-- Row con 2 grafici -->
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="chart-container">
+                    <h5 class="mb-3">Distribuzione per Categoria AI</h5>
+                    <div style="height: 350px;">
+                        <canvas id="chartCategorie"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="chart-container">
+                    <h5 class="mb-3">Distribuzione per Settore PA</h5>
+                    <div style="height: 350px;">
+                        <canvas id="chartSettori"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Row PNRR e Trend -->
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="chart-container">
+                    <h5 class="mb-3">PNRR vs Non-PNRR</h5>
+                    <div style="height: 300px;">
+                        <canvas id="chartPnrr"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="chart-container">
+                    <h5 class="mb-3">Trend Temporale</h5>
+                    <div style="height: 300px;">
+                        <canvas id="chartTrend"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tabella Top 30 PA -->
+        <div class="table-container">
+            <h5 class="mb-3">Top 30 Amministrazioni Appaltanti</h5>
+            <div class="table-responsive">
+                <table class="table table-striped table-hover">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>#</th>
+                            <th>Amministrazione</th>
+                            <th>Provincia</th>
+                            <th>Settore</th>
+                            <th class="text-end">Spesa Totale</th>
+                            <th class="text-end">N. Contr.</th>
+                            <th class="text-end">Media</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                        <tr>
+                            <td>1</td>
+                            <td title="AGENZIA SPAZIALE ITALIANA">AGENZIA SPAZIALE ITALIANA</td>
+                            <td>ROMA</td>
+                            <td><span class="badge bg-secondary badge-settore">PA Centrale</span></td>
+                            <td class="text-end fw-bold">34,274,022</td>
+                            <td class="text-end">13</td>
+                            <td class="text-end">2,636,463</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>2</td>
+                            <td title="MINISTERO INTERNO DIPARTIMENTO DELLA P.S.">MINISTERO INTERNO DIPARTIMENTO DELLA P.S.</td>
+                            <td>ROMA</td>
+                            <td><span class="badge bg-secondary badge-settore">PA Centrale</span></td>
+                            <td class="text-end fw-bold">28,975,207</td>
+                            <td class="text-end">3</td>
+                            <td class="text-end">9,658,402</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>3</td>
+                            <td title="COMMISSIONE NAZIONALE PER LE SOCIETA E LA BORSA">COMMISSIONE NAZIONALE PER LE SOCIETA E LA BORSA</td>
+                            <td>ROMA</td>
+                            <td><span class="badge bg-secondary badge-settore">PA Centrale</span></td>
+                            <td class="text-end fw-bold">9,986,896</td>
+                            <td class="text-end">1</td>
+                            <td class="text-end">9,986,896</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>4</td>
+                            <td title="ISTITUTO CENTRALE PER LA DIGITALIZZAZIONE DEL PATRIMONIO CULTURALE -DIGITAL LIBRARY">ISTITUTO CENTRALE PER LA DIGITALIZZAZIONE DEL PATR...</td>
+                            <td>ROMA</td>
+                            <td><span class="badge bg-secondary badge-settore">Enti Pubblici Economici</span></td>
+                            <td class="text-end fw-bold">7,999,995</td>
+                            <td class="text-end">1</td>
+                            <td class="text-end">7,999,995</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>5</td>
+                            <td title="CONSIGLIO NAZIONALE DELLE RICERCHE">CONSIGLIO NAZIONALE DELLE RICERCHE</td>
+                            <td>GENOVA</td>
+                            <td><span class="badge bg-secondary badge-settore">Altri Enti Pubblici</span></td>
+                            <td class="text-end fw-bold">7,240,309</td>
+                            <td class="text-end">21</td>
+                            <td class="text-end">344,777</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>6</td>
+                            <td title="REGIONE LIGURIA">REGIONE LIGURIA</td>
+                            <td>GENOVA</td>
+                            <td><span class="badge bg-secondary badge-settore">PA Locale</span></td>
+                            <td class="text-end fw-bold">6,605,417</td>
+                            <td class="text-end">1</td>
+                            <td class="text-end">6,605,417</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>7</td>
+                            <td title="CONSIGLIO DI STATO">CONSIGLIO DI STATO</td>
+                            <td>ROMA</td>
+                            <td><span class="badge bg-secondary badge-settore">Giustizia</span></td>
+                            <td class="text-end fw-bold">3,349,150</td>
+                            <td class="text-end">2</td>
+                            <td class="text-end">1,674,575</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>8</td>
+                            <td title="UFFICIO GENERALE CENTRO RESPONSABILITA' AMMINISTRATIVA - AERONAUTICA MILITARE">UFFICIO GENERALE CENTRO RESPONSABILITA' AMMINISTRA...</td>
+                            <td>ROMA</td>
+                            <td><span class="badge bg-secondary badge-settore">Difesa e Sicurezza</span></td>
+                            <td class="text-end fw-bold">3,278,530</td>
+                            <td class="text-end">1</td>
+                            <td class="text-end">3,278,530</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>9</td>
+                            <td title="MINISTERO DIFESA SEGREDIFESA /D.N.A. DIREZIONE INFORMATICA, TELEMATICA E TECNOLOGIE AVANZATE">MINISTERO DIFESA SEGREDIFESA /D.N.A. DIREZIONE INF...</td>
+                            <td>N/D</td>
+                            <td><span class="badge bg-secondary badge-settore">PA Centrale</span></td>
+                            <td class="text-end fw-bold">2,955,197</td>
+                            <td class="text-end">1</td>
+                            <td class="text-end">2,955,197</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>10</td>
+                            <td title="ENTE NAZIONALE PER L AVIAZIONE CIVILE">ENTE NAZIONALE PER L AVIAZIONE CIVILE</td>
+                            <td>ROMA</td>
+                            <td><span class="badge bg-secondary badge-settore">Altri Enti Pubblici</span></td>
+                            <td class="text-end fw-bold">2,701,820</td>
+                            <td class="text-end">1</td>
+                            <td class="text-end">2,701,820</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>11</td>
+                            <td title="AZIENDA SANITARIA PROVINCIALE DI COSENZA">AZIENDA SANITARIA PROVINCIALE DI COSENZA</td>
+                            <td>N/D</td>
+                            <td><span class="badge bg-secondary badge-settore">Sanità</span></td>
+                            <td class="text-end fw-bold">2,500,000</td>
+                            <td class="text-end">1</td>
+                            <td class="text-end">2,500,000</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>12</td>
+                            <td title="AZIENDA REGIONALE PER L INNOVAZIONE E GLI ACQUISTI S.P.A.">AZIENDA REGIONALE PER L INNOVAZIONE E GLI ACQUISTI...</td>
+                            <td>MILANO</td>
+                            <td><span class="badge bg-secondary badge-settore">Altri Enti Pubblici</span></td>
+                            <td class="text-end fw-bold">2,358,039</td>
+                            <td class="text-end">2</td>
+                            <td class="text-end">1,179,020</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>13</td>
+                            <td title="UNIVERSITA' DEGLI STUDI DI PALERMO">UNIVERSITA' DEGLI STUDI DI PALERMO</td>
+                            <td>PALERMO</td>
+                            <td><span class="badge bg-secondary badge-settore">Università e Ricerca</span></td>
+                            <td class="text-end fw-bold">2,208,377</td>
+                            <td class="text-end">3</td>
+                            <td class="text-end">736,126</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>14</td>
+                            <td title="ENTE REGIONE MARCHE">ENTE REGIONE MARCHE</td>
+                            <td>ANCONA</td>
+                            <td><span class="badge bg-secondary badge-settore">PA Locale</span></td>
+                            <td class="text-end fw-bold">2,010,380</td>
+                            <td class="text-end">2</td>
+                            <td class="text-end">1,005,190</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>15</td>
+                            <td title="AGENZIA LOCALE DI SVILUPPO AREA NOLA S.C.P.A.">AGENZIA LOCALE DI SVILUPPO AREA NOLA S.C.P.A.</td>
+                            <td>NAPOLI</td>
+                            <td><span class="badge bg-secondary badge-settore">Altri Enti Pubblici</span></td>
+                            <td class="text-end fw-bold">1,900,000</td>
+                            <td class="text-end">1</td>
+                            <td class="text-end">1,900,000</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>16</td>
+                            <td title="PROVINCIA AUTONOMA DI TRENTO">PROVINCIA AUTONOMA DI TRENTO</td>
+                            <td>TRENTO</td>
+                            <td><span class="badge bg-secondary badge-settore">PA Locale</span></td>
+                            <td class="text-end fw-bold">1,883,640</td>
+                            <td class="text-end">7</td>
+                            <td class="text-end">269,091</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>17</td>
+                            <td title="RAI RADIOTELEVISIONE ITALIANA S.P.A.">RAI RADIOTELEVISIONE ITALIANA S.P.A.</td>
+                            <td>ROMA</td>
+                            <td><span class="badge bg-secondary badge-settore">Utilities & Trasporti</span></td>
+                            <td class="text-end fw-bold">1,541,440</td>
+                            <td class="text-end">6</td>
+                            <td class="text-end">256,907</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>18</td>
+                            <td title="BANCA D ITALIA">BANCA D ITALIA</td>
+                            <td>ROMA</td>
+                            <td><span class="badge bg-secondary badge-settore">Enti Pubblici Economici</span></td>
+                            <td class="text-end fw-bold">1,409,195</td>
+                            <td class="text-end">6</td>
+                            <td class="text-end">234,866</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>19</td>
+                            <td title="PRESIDENZA DEL CONSIGLIO DEI MINISTRI">PRESIDENZA DEL CONSIGLIO DEI MINISTRI</td>
+                            <td>ROMA</td>
+                            <td><span class="badge bg-secondary badge-settore">PA Centrale</span></td>
+                            <td class="text-end fw-bold">1,335,350</td>
+                            <td class="text-end">3</td>
+                            <td class="text-end">445,117</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>20</td>
+                            <td title="COMUNE DI CATANIA">COMUNE DI CATANIA</td>
+                            <td>CATANIA</td>
+                            <td><span class="badge bg-secondary badge-settore">PA Locale</span></td>
+                            <td class="text-end fw-bold">1,264,840</td>
+                            <td class="text-end">1</td>
+                            <td class="text-end">1,264,840</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>21</td>
+                            <td title="GRIM GESTIONE RISORSE IDRICHE MOLISANE S.C.A.R.L.">GRIM GESTIONE RISORSE IDRICHE MOLISANE S.C.A.R.L.</td>
+                            <td>CAMPOBASSO</td>
+                            <td><span class="badge bg-secondary badge-settore">Altri Enti Pubblici</span></td>
+                            <td class="text-end fw-bold">1,177,200</td>
+                            <td class="text-end">1</td>
+                            <td class="text-end">1,177,200</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>22</td>
+                            <td title="AZIENDA SANITARIA PROVINCIALE DI CALTANISSETTA">AZIENDA SANITARIA PROVINCIALE DI CALTANISSETTA</td>
+                            <td>CALTANISSETTA</td>
+                            <td><span class="badge bg-secondary badge-settore">Sanità</span></td>
+                            <td class="text-end fw-bold">1,136,000</td>
+                            <td class="text-end">3</td>
+                            <td class="text-end">378,667</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>23</td>
+                            <td title="AZIENDA SOCIO-SANITARIA TERRITORIALE (ASST) OVEST MILANESE">AZIENDA SOCIO-SANITARIA TERRITORIALE (ASST) OVEST ...</td>
+                            <td>MILANO</td>
+                            <td><span class="badge bg-secondary badge-settore">Sanità</span></td>
+                            <td class="text-end fw-bold">1,058,933</td>
+                            <td class="text-end">1</td>
+                            <td class="text-end">1,058,933</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>24</td>
+                            <td title="LIGURIA DIGITALE S.P.A.">LIGURIA DIGITALE S.P.A.</td>
+                            <td>GENOVA</td>
+                            <td><span class="badge bg-secondary badge-settore">Altri Enti Pubblici</span></td>
+                            <td class="text-end fw-bold">997,500</td>
+                            <td class="text-end">3</td>
+                            <td class="text-end">332,500</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>25</td>
+                            <td title="AZIENDA SOCIO SANITARIA TERRITORIALE (ASST) DEI SETTE LAGHI">AZIENDA SOCIO SANITARIA TERRITORIALE (ASST) DEI SE...</td>
+                            <td>VARESE</td>
+                            <td><span class="badge bg-secondary badge-settore">Sanità</span></td>
+                            <td class="text-end fw-bold">980,200</td>
+                            <td class="text-end">2</td>
+                            <td class="text-end">490,100</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>26</td>
+                            <td title="ISTITUTO TECNICO SUPERIORE PER LE TECNOLOGIE INNOVATIVE PER I BENI E LE ATTIVITA' CULTURALI - TURISMO - MARCHE">ISTITUTO TECNICO SUPERIORE PER LE TECNOLOGIE INNOV...</td>
+                            <td>PESARO E URBINO</td>
+                            <td><span class="badge bg-secondary badge-settore">Istruzione</span></td>
+                            <td class="text-end fw-bold">937,414</td>
+                            <td class="text-end">6</td>
+                            <td class="text-end">156,236</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>27</td>
+                            <td title="SANITAETSBETRIEB DER AUTONOMEN PROVINZ BOZEN">SANITAETSBETRIEB DER AUTONOMEN PROVINZ BOZEN</td>
+                            <td>BOLZANO</td>
+                            <td><span class="badge bg-secondary badge-settore">Altri Enti Pubblici</span></td>
+                            <td class="text-end fw-bold">875,000</td>
+                            <td class="text-end">1</td>
+                            <td class="text-end">875,000</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>28</td>
+                            <td title="POLITECNICO DI BARI">POLITECNICO DI BARI</td>
+                            <td>BARI</td>
+                            <td><span class="badge bg-secondary badge-settore">Università e Ricerca</span></td>
+                            <td class="text-end fw-bold">854,331</td>
+                            <td class="text-end">3</td>
+                            <td class="text-end">284,777</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>29</td>
+                            <td title="AZIENDA SOCIO-SANITARIA TERRITORIALE (ASST) SANTI PAOLO E CARLO">AZIENDA SOCIO-SANITARIA TERRITORIALE (ASST) SANTI ...</td>
+                            <td>MILANO</td>
+                            <td><span class="badge bg-secondary badge-settore">Sanità</span></td>
+                            <td class="text-end fw-bold">854,020</td>
+                            <td class="text-end">3</td>
+                            <td class="text-end">284,673</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>30</td>
+                            <td title="COMUNE SARROCH">COMUNE SARROCH</td>
+                            <td>CAGLIARI</td>
+                            <td><span class="badge bg-secondary badge-settore">PA Locale</span></td>
+                            <td class="text-end fw-bold">811,475</td>
+                            <td class="text-end">1</td>
+                            <td class="text-end">811,475</td>
+                        </tr>
+                        
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Sezione Validazioni -->
+        <div class="alert-section">
+            <h5 class="mb-3">Validazioni e Anomalie</h5>
+
+            
+            <div class="alert alert-danger d-flex align-items-start" role="alert">
+                <div>
+                    <strong>Errore Critico Corretto</strong><br>
+                    CIG <code>B1B36B1A1E</code> -
+                    Importo errato €293,893,058.00
+                    corretto a €357.85
+                    <br><small class="text-muted">Acquisto libri biblioteca (confronto CIG B1AA21EEA3, B1B748D667)</small>
+                </div>
+            </div>
+            
+
+            <div class="alert alert-warning d-flex align-items-start" role="alert">
+                <div>
+                    <strong>Analisi Aggiudicatari Non Disponibile</strong><br>
+                    I dati ANAC non contengono informazioni sulle società aggiudicatarie.
+                    Per questa analisi è necessario integrare con API ANAC o fonti esterne.
+                </div>
+            </div>
+
+            <div class="alert alert-info d-flex align-items-start" role="alert">
+                <div>
+                    <strong>Outlier Identificati</strong><br>
+                    Rilevati <span class="badge bg-primary">1</span> contratti
+                    con importi superiori a 3 deviazioni standard dalla media (> €29,072,538).
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="text-center">
+        <div class="container">
+            <p class="mb-1">Dashboard Appalti IA ANAC 2023-2025</p>
+            <small class="opacity-75">Fonte: ANAC - Autorità Nazionale Anticorruzione | Elaborazione: 28/01/2026 15:40</small>
+        </div>
+    </footer>
+
+    <script>
+        // Colori
+        const colors = [
+            '#0d6efd', '#6610f2', '#6f42c1', '#d63384', '#dc3545',
+            '#fd7e14', '#ffc107', '#198754', '#20c997', '#0dcaf0',
+            '#6c757d', '#adb5bd', '#495057', '#212529', '#f8f9fa', '#343a40'
+        ];
+
+        // Formatta numeri
+        const formatEuro = (value) => '€' + value.toLocaleString('it-IT');
+        const formatMilioni = (value) => '€' + (value/1000000).toFixed(1) + 'M';
+
+        // Grafico Top 10 PA
+        new Chart(document.getElementById('chartTop10'), {
+            type: 'bar',
+            data: {
+                labels: ["AGENZIA SPAZIALE ITALIANA", "MINISTERO INTERNO DIPARTIMENTO DELLA P.S...", "COMMISSIONE NAZIONALE PER LE SOCIETA E L...", "ISTITUTO CENTRALE PER LA DIGITALIZZAZION...", "CONSIGLIO NAZIONALE DELLE RICERCHE", "REGIONE LIGURIA", "CONSIGLIO DI STATO", "UFFICIO GENERALE CENTRO RESPONSABILITA' ...", "MINISTERO DIFESA SEGREDIFESA /D.N.A. DIR...", "ENTE NAZIONALE PER L AVIAZIONE CIVILE"],
+                datasets: [{
+                    label: 'Spesa Totale',
+                    data: [34274022.0, 28975206.55, 9986895.92, 7999995.0, 7240309.08, 6605417.0, 3349150.16, 3278530.0, 2955197.0, 2701820.0],
+                    backgroundColor: 'rgba(13, 110, 253, 0.8)',
+                    borderColor: 'rgba(13, 110, 253, 1)',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: {
+                            label: (ctx) => formatEuro(ctx.parsed.x)
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        ticks: {
+                            callback: (value) => formatMilioni(value)
+                        }
+                    }
+                }
+            }
+        });
+
+        // Grafico Categorie AI
+        new Chart(document.getElementById('chartCategorie'), {
+            type: 'doughnut',
+            data: {
+                labels: ["Altre applicazioni IA", "Consulenza IA", "Formazione IA", "Cybersecurity IA", "Machine Learning & Analytics", "Healthcare IA", "Infrastruttura IA", "AI Generativa & LLM", "RPA & Automazione", "NLP & Speech", "Computer Vision", "Recommendation Systems", "IoT & Edge AI", "AI Ethics & Governance", "Document Intelligence"],
+                datasets: [{
+                    data: [110581301.04, 24634149.86, 11382285.030000001, 5704913.2, 5653514.2299999995, 5172680.703333333, 3658658.55, 3126733.7800000003, 3102095.05, 797000.0, 476209.6, 437300.0, 322933.55, 306928.73, 192964.81],
+                    backgroundColor: colors.slice(0, 15),
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'right',
+                        labels: { boxWidth: 12, font: { size: 10 } }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: (ctx) => {
+                                const total = ctx.dataset.data.reduce((a,b) => a+b, 0);
+                                const pct = ((ctx.parsed/total)*100).toFixed(1);
+                                return ctx.label + ': ' + formatEuro(ctx.parsed) + ' (' + pct + '%)';
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // Grafico Settori PA
+        new Chart(document.getElementById('chartSettori'), {
+            type: 'bar',
+            data: {
+                labels: ["PA Centrale", "Altri Enti Pubblici", "PA Locale", "Sanit\u00e0", "Universit\u00e0 e Ricerca", "Enti Pubblici Economici", "Istruzione", "Difesa e Sicurezza", "Giustizia", "Utilities & Trasporti"],
+                datasets: [{
+                    label: 'Valore',
+                    data: [79031294.57, 30238316.01, 17273816.72, 13783087.743333334, 10182667.48, 9777630.98, 5049881.56, 4045830.4, 3349150.16, 2817992.51],
+                    backgroundColor: colors.slice(0, 10),
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: {
+                            label: (ctx) => formatEuro(ctx.parsed.y)
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            callback: (value) => formatMilioni(value)
+                        }
+                    },
+                    x: {
+                        ticks: {
+                            maxRotation: 45,
+                            minRotation: 45,
+                            font: { size: 10 }
+                        }
+                    }
+                }
+            }
+        });
+
+        // Grafico PNRR
+        new Chart(document.getElementById('chartPnrr'), {
+            type: 'doughnut',
+            data: {
+                labels: ['PNRR', 'Non-PNRR'],
+                datasets: [{
+                    data: [26131455.67, 149418212.46],
+                    backgroundColor: ['#198754', '#6c757d'],
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'bottom' },
+                    tooltip: {
+                        callbacks: {
+                            label: (ctx) => {
+                                const total = ctx.dataset.data.reduce((a,b) => a+b, 0);
+                                const pct = ((ctx.parsed/total)*100).toFixed(1);
+                                return ctx.label + ': ' + formatEuro(ctx.parsed) + ' (' + pct + '%)';
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // Grafico Trend
+        new Chart(document.getElementById('chartTrend'), {
+            type: 'line',
+            data: {
+                labels: ["2023", "2024", "2025"],
+                datasets: [
+                    {
+                        label: 'N. Contratti',
+                        data: [111, 330, 518],
+                        borderColor: 'rgb(75, 192, 192)',
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        tension: 0.1,
+                        yAxisID: 'y',
+                        fill: true
+                    },
+                    {
+                        label: 'Valore (€M)',
+                        data: [20.764189899999998, 50.22808828, 104.55738995333333],
+                        borderColor: 'rgb(255, 99, 132)',
+                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                        tension: 0.1,
+                        yAxisID: 'y1',
+                        fill: true
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                interaction: { mode: 'index', intersect: false },
+                plugins: {
+                    legend: { position: 'top' }
+                },
+                scales: {
+                    y: {
+                        type: 'linear',
+                        display: true,
+                        position: 'left',
+                        title: { display: true, text: 'N. Contratti' }
+                    },
+                    y1: {
+                        type: 'linear',
+                        display: true,
+                        position: 'right',
+                        title: { display: true, text: 'Valore (€M)' },
+                        grid: { drawOnChartArea: false }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

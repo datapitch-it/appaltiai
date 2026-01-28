@@ -1,0 +1,726 @@
+{
+  "metadata": {
+    "data_elaborazione": "2026-01-28T15:40:51.305320",
+    "totale_contratti": 959,
+    "valore_totale": 175549668.13,
+    "anni": [
+      "2023",
+      "2024",
+      "2025"
+    ],
+    "correzioni_applicate": [
+      {
+        "cig": "B1B36B1A1E",
+        "tipo": "ERRORE CRITICO",
+        "campo": "importo_lotto",
+        "valore_originale": 293893058.0,
+        "valore_corretto": 357.85,
+        "motivo": "Acquisto libri biblioteca (confronto CIG B1AA21EEA3, B1B748D667)"
+      }
+    ]
+  },
+  "statistiche_generali": {
+    "totale_contratti": 959,
+    "valore_totale": 175549668.13,
+    "valore_medio": 183054.92,
+    "valore_mediano": 25000.0,
+    "pa_coinvolte": 592,
+    "province_coinvolte": 96,
+    "anni_coperti": [
+      2023,
+      2024,
+      2025
+    ],
+    "distribuzione_annuale": {
+      "2023": {
+        "n_contratti": 111,
+        "valore": 20764189.9
+      },
+      "2024": {
+        "n_contratti": 330,
+        "valore": 50228088.28
+      },
+      "2025": {
+        "n_contratti": 518,
+        "valore": 104557389.95333333
+      }
+    }
+  },
+  "top_pa": [
+    {
+      "cf": 97061010589,
+      "denominazione": "AGENZIA SPAZIALE ITALIANA",
+      "importo_totale": 34274022.0,
+      "importo_medio": 2636463.230769231,
+      "importo_min": 1396181.0,
+      "importo_max": 3932503.0,
+      "n_contratti": 13,
+      "provincia": "ROMA",
+      "anni_attivita": [
+        2024,
+        2025
+      ],
+      "settore": "PA Centrale",
+      "posizione": 1
+    },
+    {
+      "cf": 80202230589,
+      "denominazione": "MINISTERO INTERNO DIPARTIMENTO DELLA P.S.",
+      "importo_totale": 28975206.55,
+      "importo_medio": 9658402.183333334,
+      "importo_min": 135000.0,
+      "importo_max": 16042818.22,
+      "n_contratti": 3,
+      "provincia": "ROMA",
+      "anni_attivita": [
+        2025
+      ],
+      "settore": "PA Centrale",
+      "posizione": 2
+    },
+    {
+      "cf": 80204250585,
+      "denominazione": "COMMISSIONE NAZIONALE PER LE SOCIETA E LA BORSA",
+      "importo_totale": 9986895.92,
+      "importo_medio": 9986895.92,
+      "importo_min": 9986895.92,
+      "importo_max": 9986895.92,
+      "n_contratti": 1,
+      "provincia": "ROMA",
+      "anni_attivita": [
+        2025
+      ],
+      "settore": "PA Centrale",
+      "posizione": 3
+    },
+    {
+      "cf": 96452070582,
+      "denominazione": "ISTITUTO CENTRALE PER LA DIGITALIZZAZIONE DEL PATRIMONIO CULTURALE -DIGITAL LIBRARY",
+      "importo_totale": 7999995.0,
+      "importo_medio": 7999995.0,
+      "importo_min": 7999995.0,
+      "importo_max": 7999995.0,
+      "n_contratti": 1,
+      "provincia": "ROMA",
+      "anni_attivita": [
+        2025
+      ],
+      "settore": "Enti Pubblici Economici",
+      "posizione": 4
+    },
+    {
+      "cf": 80054330586,
+      "denominazione": "CONSIGLIO NAZIONALE DELLE RICERCHE",
+      "importo_totale": 7240309.08,
+      "importo_medio": 344776.6228571429,
+      "importo_min": 0.0,
+      "importo_max": 3032786.88,
+      "n_contratti": 21,
+      "provincia": "GENOVA",
+      "anni_attivita": [
+        2023,
+        2024,
+        2025
+      ],
+      "settore": "Altri Enti Pubblici",
+      "posizione": 5
+    },
+    {
+      "cf": 849050109,
+      "denominazione": "REGIONE LIGURIA",
+      "importo_totale": 6605417.0,
+      "importo_medio": 6605417.0,
+      "importo_min": 6605417.0,
+      "importo_max": 6605417.0,
+      "n_contratti": 1,
+      "provincia": "GENOVA",
+      "anni_attivita": [
+        2025
+      ],
+      "settore": "PA Locale",
+      "posizione": 6
+    },
+    {
+      "cf": 80427570587,
+      "denominazione": "CONSIGLIO DI STATO",
+      "importo_totale": 3349150.16,
+      "importo_medio": 1674575.08,
+      "importo_min": 548790.16,
+      "importo_max": 2800360.0,
+      "n_contratti": 2,
+      "provincia": "ROMA",
+      "anni_attivita": [
+        2023,
+        2025
+      ],
+      "settore": "Giustizia",
+      "posizione": 7
+    },
+    {
+      "cf": 97981460583,
+      "denominazione": "UFFICIO GENERALE CENTRO RESPONSABILITA' AMMINISTRATIVA - AERONAUTICA MILITARE",
+      "importo_totale": 3278530.0,
+      "importo_medio": 3278530.0,
+      "importo_min": 3278530.0,
+      "importo_max": 3278530.0,
+      "n_contratti": 1,
+      "provincia": "ROMA",
+      "anni_attivita": [
+        2024
+      ],
+      "settore": "Difesa e Sicurezza",
+      "posizione": 8
+    },
+    {
+      "cf": 12800841004,
+      "denominazione": "MINISTERO DIFESA SEGREDIFESA /D.N.A. DIREZIONE INFORMATICA, TELEMATICA E TECNOLOGIE AVANZATE",
+      "importo_totale": 2955197.0,
+      "importo_medio": 2955197.0,
+      "importo_min": 2955197.0,
+      "importo_max": 2955197.0,
+      "n_contratti": 1,
+      "provincia": "N/D",
+      "anni_attivita": [
+        2025
+      ],
+      "settore": "PA Centrale",
+      "posizione": 9
+    },
+    {
+      "cf": 97158180584,
+      "denominazione": "ENTE NAZIONALE PER L AVIAZIONE CIVILE",
+      "importo_totale": 2701820.0,
+      "importo_medio": 2701820.0,
+      "importo_min": 2701820.0,
+      "importo_max": 2701820.0,
+      "n_contratti": 1,
+      "provincia": "ROMA",
+      "anni_attivita": [
+        2023
+      ],
+      "settore": "Altri Enti Pubblici",
+      "posizione": 10
+    },
+    {
+      "cf": 2853720783,
+      "denominazione": "AZIENDA SANITARIA PROVINCIALE DI COSENZA",
+      "importo_totale": 2500000.0,
+      "importo_medio": 2500000.0,
+      "importo_min": 2500000.0,
+      "importo_max": 2500000.0,
+      "n_contratti": 1,
+      "provincia": "N/D",
+      "anni_attivita": [
+        2023
+      ],
+      "settore": "Sanità",
+      "posizione": 11
+    },
+    {
+      "cf": 5017630152,
+      "denominazione": "AZIENDA REGIONALE PER L INNOVAZIONE E GLI ACQUISTI S.P.A.",
+      "importo_totale": 2358039.0,
+      "importo_medio": 1179019.5,
+      "importo_min": 6039.0,
+      "importo_max": 2352000.0,
+      "n_contratti": 2,
+      "provincia": "MILANO",
+      "anni_attivita": [
+        2025
+      ],
+      "settore": "Altri Enti Pubblici",
+      "posizione": 12
+    },
+    {
+      "cf": 80023730825,
+      "denominazione": "UNIVERSITA' DEGLI STUDI DI PALERMO",
+      "importo_totale": 2208377.05,
+      "importo_medio": 736125.6833333332,
+      "importo_min": 6000.0,
+      "importo_max": 1620000.0,
+      "n_contratti": 3,
+      "provincia": "PALERMO",
+      "anni_attivita": [
+        2023,
+        2024,
+        2025
+      ],
+      "settore": "Università e Ricerca",
+      "posizione": 13
+    },
+    {
+      "cf": 80008630420,
+      "denominazione": "ENTE REGIONE MARCHE",
+      "importo_totale": 2010380.31,
+      "importo_medio": 1005190.155,
+      "importo_min": 138300.0,
+      "importo_max": 1872080.31,
+      "n_contratti": 2,
+      "provincia": "ANCONA",
+      "anni_attivita": [
+        2024,
+        2025
+      ],
+      "settore": "PA Locale",
+      "posizione": 14
+    },
+    {
+      "cf": 4525451219,
+      "denominazione": "AGENZIA LOCALE DI SVILUPPO AREA NOLA S.C.P.A.",
+      "importo_totale": 1900000.0,
+      "importo_medio": 1900000.0,
+      "importo_min": 1900000.0,
+      "importo_max": 1900000.0,
+      "n_contratti": 1,
+      "provincia": "NAPOLI",
+      "anni_attivita": [
+        2025
+      ],
+      "settore": "Altri Enti Pubblici",
+      "posizione": 15
+    },
+    {
+      "cf": 337460224,
+      "denominazione": "PROVINCIA AUTONOMA DI TRENTO",
+      "importo_totale": 1883639.98,
+      "importo_medio": 269091.4257142857,
+      "importo_min": 14938.0,
+      "importo_max": 1012770.0,
+      "n_contratti": 7,
+      "provincia": "TRENTO",
+      "anni_attivita": [
+        2024,
+        2025
+      ],
+      "settore": "PA Locale",
+      "posizione": 16
+    },
+    {
+      "cf": 6382641006,
+      "denominazione": "RAI RADIOTELEVISIONE ITALIANA S.P.A.",
+      "importo_totale": 1541440.0,
+      "importo_medio": 256906.66666666666,
+      "importo_min": 7000.0,
+      "importo_max": 1172440.0,
+      "n_contratti": 6,
+      "provincia": "ROMA",
+      "anni_attivita": [
+        2024,
+        2025
+      ],
+      "settore": "Utilities & Trasporti",
+      "posizione": 17
+    },
+    {
+      "cf": 997670583,
+      "denominazione": "BANCA D ITALIA",
+      "importo_totale": 1409195.08,
+      "importo_medio": 234865.84666666668,
+      "importo_min": 10000.0,
+      "importo_max": 1262295.08,
+      "n_contratti": 6,
+      "provincia": "ROMA",
+      "anni_attivita": [
+        2024,
+        2025
+      ],
+      "settore": "Enti Pubblici Economici",
+      "posizione": 18
+    },
+    {
+      "cf": 80188230587,
+      "denominazione": "PRESIDENZA DEL CONSIGLIO DEI MINISTRI",
+      "importo_totale": 1335350.0,
+      "importo_medio": 445116.6666666667,
+      "importo_min": 135000.0,
+      "importo_max": 1065350.0,
+      "n_contratti": 3,
+      "provincia": "ROMA",
+      "anni_attivita": [
+        2023,
+        2024,
+        2025
+      ],
+      "settore": "PA Centrale",
+      "posizione": 19
+    },
+    {
+      "cf": 137020871,
+      "denominazione": "COMUNE DI CATANIA",
+      "importo_totale": 1264840.0,
+      "importo_medio": 1264840.0,
+      "importo_min": 1264840.0,
+      "importo_max": 1264840.0,
+      "n_contratti": 1,
+      "provincia": "CATANIA",
+      "anni_attivita": [
+        2025
+      ],
+      "settore": "PA Locale",
+      "posizione": 20
+    },
+    {
+      "cf": 1884950708,
+      "denominazione": "GRIM GESTIONE RISORSE IDRICHE MOLISANE S.C.A.R.L.",
+      "importo_totale": 1177200.0,
+      "importo_medio": 1177200.0,
+      "importo_min": 1177200.0,
+      "importo_max": 1177200.0,
+      "n_contratti": 1,
+      "provincia": "CAMPOBASSO",
+      "anni_attivita": [
+        2025
+      ],
+      "settore": "Altri Enti Pubblici",
+      "posizione": 21
+    },
+    {
+      "cf": 1825570854,
+      "denominazione": "AZIENDA SANITARIA PROVINCIALE DI CALTANISSETTA",
+      "importo_totale": 1136000.0,
+      "importo_medio": 378666.6666666667,
+      "importo_min": 216000.0,
+      "importo_max": 600000.0,
+      "n_contratti": 3,
+      "provincia": "CALTANISSETTA",
+      "anni_attivita": [
+        2023,
+        2025
+      ],
+      "settore": "Sanità",
+      "posizione": 22
+    },
+    {
+      "cf": 9319650967,
+      "denominazione": "AZIENDA SOCIO-SANITARIA TERRITORIALE (ASST) OVEST MILANESE",
+      "importo_totale": 1058933.3333333335,
+      "importo_medio": 1058933.3333333335,
+      "importo_min": 1058933.3333333335,
+      "importo_max": 1058933.3333333335,
+      "n_contratti": 1,
+      "provincia": "MILANO",
+      "anni_attivita": [
+        2025
+      ],
+      "settore": "Sanità",
+      "posizione": 23
+    },
+    {
+      "cf": 2994540108,
+      "denominazione": "LIGURIA DIGITALE S.P.A.",
+      "importo_totale": 997500.0,
+      "importo_medio": 332500.0,
+      "importo_min": 45000.0,
+      "importo_max": 847500.0,
+      "n_contratti": 3,
+      "provincia": "GENOVA",
+      "anni_attivita": [
+        2023,
+        2025
+      ],
+      "settore": "Altri Enti Pubblici",
+      "posizione": 24
+    },
+    {
+      "cf": 3510050127,
+      "denominazione": "AZIENDA SOCIO SANITARIA TERRITORIALE (ASST) DEI SETTE LAGHI",
+      "importo_totale": 980200.0,
+      "importo_medio": 490100.0,
+      "importo_min": 128000.0,
+      "importo_max": 852200.0,
+      "n_contratti": 2,
+      "provincia": "VARESE",
+      "anni_attivita": [
+        2025
+      ],
+      "settore": "Sanità",
+      "posizione": 25
+    },
+    {
+      "cf": 90045310415,
+      "denominazione": "ISTITUTO TECNICO SUPERIORE PER LE TECNOLOGIE INNOVATIVE PER I BENI E LE ATTIVITA' CULTURALI - TURISMO - MARCHE",
+      "importo_totale": 937414.0,
+      "importo_medio": 156235.66666666666,
+      "importo_min": 7600.0,
+      "importo_max": 200459.9,
+      "n_contratti": 6,
+      "provincia": "PESARO E URBINO",
+      "anni_attivita": [
+        2024
+      ],
+      "settore": "Istruzione",
+      "posizione": 26
+    },
+    {
+      "cf": 773750211,
+      "denominazione": "SANITAETSBETRIEB DER AUTONOMEN PROVINZ BOZEN",
+      "importo_totale": 875000.0,
+      "importo_medio": 875000.0,
+      "importo_min": 875000.0,
+      "importo_max": 875000.0,
+      "n_contratti": 1,
+      "provincia": "BOLZANO",
+      "anni_attivita": [
+        2024
+      ],
+      "settore": "Altri Enti Pubblici",
+      "posizione": 27
+    },
+    {
+      "cf": 93051590722,
+      "denominazione": "POLITECNICO DI BARI",
+      "importo_totale": 854330.66,
+      "importo_medio": 284776.88666666666,
+      "importo_min": 100000.0,
+      "importo_max": 647773.28,
+      "n_contratti": 3,
+      "provincia": "BARI",
+      "anni_attivita": [
+        2025
+      ],
+      "settore": "Università e Ricerca",
+      "posizione": 28
+    },
+    {
+      "cf": 9321970965,
+      "denominazione": "AZIENDA SOCIO-SANITARIA TERRITORIALE (ASST) SANTI PAOLO E CARLO",
+      "importo_totale": 854019.57,
+      "importo_medio": 284673.19,
+      "importo_min": 73200.0,
+      "importo_max": 651348.57,
+      "n_contratti": 3,
+      "provincia": "MILANO",
+      "anni_attivita": [
+        2023,
+        2025
+      ],
+      "settore": "Sanità",
+      "posizione": 29
+    },
+    {
+      "cf": 80006310926,
+      "denominazione": "COMUNE SARROCH",
+      "importo_totale": 811475.0,
+      "importo_medio": 811475.0,
+      "importo_min": 811475.0,
+      "importo_max": 811475.0,
+      "n_contratti": 1,
+      "provincia": "CAGLIARI",
+      "anni_attivita": [
+        2025
+      ],
+      "settore": "PA Locale",
+      "posizione": 30
+    }
+  ],
+  "categorie_ai": [
+    {
+      "categoria_ai": "Altre applicazioni IA",
+      "valore": 110581301.04,
+      "n_contratti": 424,
+      "percentuale": 62.99
+    },
+    {
+      "categoria_ai": "Consulenza IA",
+      "valore": 24634149.86,
+      "n_contratti": 74,
+      "percentuale": 14.03
+    },
+    {
+      "categoria_ai": "Formazione IA",
+      "valore": 11382285.030000001,
+      "n_contratti": 256,
+      "percentuale": 6.48
+    },
+    {
+      "categoria_ai": "Cybersecurity IA",
+      "valore": 5704913.2,
+      "n_contratti": 18,
+      "percentuale": 3.25
+    },
+    {
+      "categoria_ai": "Machine Learning & Analytics",
+      "valore": 5653514.2299999995,
+      "n_contratti": 43,
+      "percentuale": 3.22
+    },
+    {
+      "categoria_ai": "Healthcare IA",
+      "valore": 5172680.703333333,
+      "n_contratti": 33,
+      "percentuale": 2.95
+    },
+    {
+      "categoria_ai": "Infrastruttura IA",
+      "valore": 3658658.55,
+      "n_contratti": 31,
+      "percentuale": 2.08
+    },
+    {
+      "categoria_ai": "AI Generativa & LLM",
+      "valore": 3126733.7800000003,
+      "n_contratti": 36,
+      "percentuale": 1.78
+    },
+    {
+      "categoria_ai": "RPA & Automazione",
+      "valore": 3102095.05,
+      "n_contratti": 4,
+      "percentuale": 1.77
+    },
+    {
+      "categoria_ai": "NLP & Speech",
+      "valore": 797000.0,
+      "n_contratti": 5,
+      "percentuale": 0.45
+    },
+    {
+      "categoria_ai": "Computer Vision",
+      "valore": 476209.6,
+      "n_contratti": 8,
+      "percentuale": 0.27
+    },
+    {
+      "categoria_ai": "Recommendation Systems",
+      "valore": 437300.0,
+      "n_contratti": 4,
+      "percentuale": 0.25
+    },
+    {
+      "categoria_ai": "IoT & Edge AI",
+      "valore": 322933.55,
+      "n_contratti": 9,
+      "percentuale": 0.18
+    },
+    {
+      "categoria_ai": "AI Ethics & Governance",
+      "valore": 306928.73,
+      "n_contratti": 9,
+      "percentuale": 0.17
+    },
+    {
+      "categoria_ai": "Document Intelligence",
+      "valore": 192964.81,
+      "n_contratti": 5,
+      "percentuale": 0.11
+    }
+  ],
+  "settori_pa": [
+    {
+      "settore_pa": "PA Centrale",
+      "valore": 79031294.57,
+      "n_contratti": 43,
+      "n_pa": 16,
+      "percentuale": 45.02
+    },
+    {
+      "settore_pa": "Altri Enti Pubblici",
+      "valore": 30238316.01,
+      "n_contratti": 302,
+      "n_pa": 201,
+      "percentuale": 17.22
+    },
+    {
+      "settore_pa": "PA Locale",
+      "valore": 17273816.72,
+      "n_contratti": 147,
+      "n_pa": 117,
+      "percentuale": 9.84
+    },
+    {
+      "settore_pa": "Sanità",
+      "valore": 13783087.743333334,
+      "n_contratti": 94,
+      "n_pa": 59,
+      "percentuale": 7.85
+    },
+    {
+      "settore_pa": "Università e Ricerca",
+      "valore": 10182667.48,
+      "n_contratti": 162,
+      "n_pa": 60,
+      "percentuale": 5.8
+    },
+    {
+      "settore_pa": "Enti Pubblici Economici",
+      "valore": 9777630.98,
+      "n_contratti": 13,
+      "n_pa": 3,
+      "percentuale": 5.57
+    },
+    {
+      "settore_pa": "Istruzione",
+      "valore": 5049881.56,
+      "n_contratti": 161,
+      "n_pa": 118,
+      "percentuale": 2.88
+    },
+    {
+      "settore_pa": "Difesa e Sicurezza",
+      "valore": 4045830.4,
+      "n_contratti": 12,
+      "n_pa": 8,
+      "percentuale": 2.3
+    },
+    {
+      "settore_pa": "Giustizia",
+      "valore": 3349150.16,
+      "n_contratti": 2,
+      "n_pa": 1,
+      "percentuale": 1.91
+    },
+    {
+      "settore_pa": "Utilities & Trasporti",
+      "valore": 2817992.51,
+      "n_contratti": 23,
+      "n_pa": 11,
+      "percentuale": 1.61
+    }
+  ],
+  "pnrr": {
+    "pnrr": {
+      "n_contratti": 256,
+      "valore": 26131455.67,
+      "valore_medio": 102076.0,
+      "valore_mediano": 16534.0,
+      "percentuale_contratti": 26.69,
+      "percentuale_valore": 14.89,
+      "per_anno": {
+        "2023": {
+          "n_contratti": 57,
+          "valore": 12295237.77
+        },
+        "2024": {
+          "n_contratti": 102,
+          "valore": 5167312.42
+        },
+        "2025": {
+          "n_contratti": 97,
+          "valore": 8668905.48
+        }
+      }
+    },
+    "non_pnrr": {
+      "n_contratti": 703,
+      "valore": 149418212.46,
+      "valore_medio": 212543.69,
+      "valore_mediano": 28500.0
+    }
+  },
+  "validazioni": {
+    "importi": {
+      "media": 489512.3756864789,
+      "mediana": 25000.0,
+      "std": 9527675.322661405,
+      "soglia_outlier": 29072538.343670692,
+      "n_outliers": 1,
+      "n_importo_zero": 5
+    },
+    "date": {
+      "n_date_future": 0,
+      "n_anni_incoerenti": 0,
+      "date_mancanti": "0"
+    },
+    "campi": {}
+  }
+}
