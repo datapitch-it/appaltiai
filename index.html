@@ -194,6 +194,35 @@
         .scroll-margin {
             scroll-margin-top: 70px;
         }
+        /* PA clickable */
+        .pa-link {
+            color: var(--primary);
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .pa-link:hover {
+            text-decoration: underline;
+        }
+        /* Modal contracts */
+        .contract-item {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 10px;
+            border-left: 4px solid var(--primary);
+        }
+        .contract-item .cig-badge {
+            font-family: monospace;
+            background: var(--primary);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+        }
+        .modal-body-scroll {
+            max-height: 60vh;
+            overflow-y: auto;
+        }
     </style>
 </head>
 <body data-bs-spy="scroll" data-bs-target="#mainNav">
@@ -411,36 +440,36 @@
                             </tr>
                         </thead>
                         <tbody id="paTableBody">
-                            <tr data-settore="PA Centrale"><td>1</td><td title="AGENZIA SPAZIALE ITALIANA">AGENZIA SPAZIALE ITALIANA</td><td>ROMA</td><td><span class="badge bg-secondary badge-settore">PA Centrale</span></td><td class="text-end fw-bold">34,274,022</td><td class="text-end">13</td><td class="text-end">2,636,463</td></tr>
-                            <tr data-settore="PA Centrale"><td>2</td><td title="MINISTERO INTERNO DIPARTIMENTO DELLA P.S.">MINISTERO INTERNO DIPARTIMENTO DELLA P.S.</td><td>ROMA</td><td><span class="badge bg-secondary badge-settore">PA Centrale</span></td><td class="text-end fw-bold">28,975,207</td><td class="text-end">3</td><td class="text-end">9,658,402</td></tr>
-                            <tr data-settore="PA Centrale"><td>3</td><td title="COMMISSIONE NAZIONALE PER LE SOCIETA E LA BORSA">COMMISSIONE NAZIONALE PER LE SOCIETA E LA BORSA</td><td>ROMA</td><td><span class="badge bg-secondary badge-settore">PA Centrale</span></td><td class="text-end fw-bold">9,986,896</td><td class="text-end">1</td><td class="text-end">9,986,896</td></tr>
-                            <tr data-settore="Enti Pubblici Economici"><td>4</td><td title="ISTITUTO CENTRALE PER LA DIGITALIZZAZIONE DEL PATRIMONIO CULTURALE -DIGITAL LIBRARY">ISTITUTO CENTRALE PER LA DIGITALIZZAZIONE DEL PATR...</td><td>ROMA</td><td><span class="badge bg-secondary badge-settore">Enti Pubblici Economici</span></td><td class="text-end fw-bold">7,999,995</td><td class="text-end">1</td><td class="text-end">7,999,995</td></tr>
-                            <tr data-settore="Altri Enti Pubblici"><td>5</td><td title="CONSIGLIO NAZIONALE DELLE RICERCHE">CONSIGLIO NAZIONALE DELLE RICERCHE</td><td>GENOVA</td><td><span class="badge bg-secondary badge-settore">Altri Enti Pubblici</span></td><td class="text-end fw-bold">7,240,309</td><td class="text-end">21</td><td class="text-end">344,777</td></tr>
-                            <tr data-settore="PA Locale"><td>6</td><td title="REGIONE LIGURIA">REGIONE LIGURIA</td><td>GENOVA</td><td><span class="badge bg-secondary badge-settore">PA Locale</span></td><td class="text-end fw-bold">6,605,417</td><td class="text-end">1</td><td class="text-end">6,605,417</td></tr>
-                            <tr data-settore="Giustizia"><td>7</td><td title="CONSIGLIO DI STATO">CONSIGLIO DI STATO</td><td>ROMA</td><td><span class="badge bg-secondary badge-settore">Giustizia</span></td><td class="text-end fw-bold">3,349,150</td><td class="text-end">2</td><td class="text-end">1,674,575</td></tr>
-                            <tr data-settore="Difesa e Sicurezza"><td>8</td><td title="UFFICIO GENERALE CENTRO RESPONSABILITA' AMMINISTRATIVA - AERONAUTICA MILITARE">UFFICIO GENERALE CENTRO RESPONSABILITA' AMMINISTRA...</td><td>ROMA</td><td><span class="badge bg-secondary badge-settore">Difesa e Sicurezza</span></td><td class="text-end fw-bold">3,278,530</td><td class="text-end">1</td><td class="text-end">3,278,530</td></tr>
-                            <tr data-settore="PA Centrale"><td>9</td><td title="MINISTERO DIFESA SEGREDIFESA /D.N.A. DIREZIONE INFORMATICA, TELEMATICA E TECNOLOGIE AVANZATE">MINISTERO DIFESA SEGREDIFESA /D.N.A. DIREZIONE INF...</td><td>N/D</td><td><span class="badge bg-secondary badge-settore">PA Centrale</span></td><td class="text-end fw-bold">2,955,197</td><td class="text-end">1</td><td class="text-end">2,955,197</td></tr>
-                            <tr data-settore="Altri Enti Pubblici"><td>10</td><td title="ENTE NAZIONALE PER L AVIAZIONE CIVILE">ENTE NAZIONALE PER L AVIAZIONE CIVILE</td><td>ROMA</td><td><span class="badge bg-secondary badge-settore">Altri Enti Pubblici</span></td><td class="text-end fw-bold">2,701,820</td><td class="text-end">1</td><td class="text-end">2,701,820</td></tr>
-                            <tr data-settore="Sanità"><td>11</td><td title="AZIENDA SANITARIA PROVINCIALE DI COSENZA">AZIENDA SANITARIA PROVINCIALE DI COSENZA</td><td>N/D</td><td><span class="badge bg-secondary badge-settore">Sanità</span></td><td class="text-end fw-bold">2,500,000</td><td class="text-end">1</td><td class="text-end">2,500,000</td></tr>
-                            <tr data-settore="Altri Enti Pubblici"><td>12</td><td title="AZIENDA REGIONALE PER L INNOVAZIONE E GLI ACQUISTI S.P.A.">AZIENDA REGIONALE PER L INNOVAZIONE E GLI ACQUISTI...</td><td>MILANO</td><td><span class="badge bg-secondary badge-settore">Altri Enti Pubblici</span></td><td class="text-end fw-bold">2,358,039</td><td class="text-end">2</td><td class="text-end">1,179,020</td></tr>
-                            <tr data-settore="Università e Ricerca"><td>13</td><td title="UNIVERSITA' DEGLI STUDI DI PALERMO">UNIVERSITA' DEGLI STUDI DI PALERMO</td><td>PALERMO</td><td><span class="badge bg-secondary badge-settore">Università e Ricerca</span></td><td class="text-end fw-bold">2,208,377</td><td class="text-end">3</td><td class="text-end">736,126</td></tr>
-                            <tr data-settore="PA Locale"><td>14</td><td title="ENTE REGIONE MARCHE">ENTE REGIONE MARCHE</td><td>ANCONA</td><td><span class="badge bg-secondary badge-settore">PA Locale</span></td><td class="text-end fw-bold">2,010,380</td><td class="text-end">2</td><td class="text-end">1,005,190</td></tr>
-                            <tr data-settore="Altri Enti Pubblici"><td>15</td><td title="AGENZIA LOCALE DI SVILUPPO AREA NOLA S.C.P.A.">AGENZIA LOCALE DI SVILUPPO AREA NOLA S.C.P.A.</td><td>NAPOLI</td><td><span class="badge bg-secondary badge-settore">Altri Enti Pubblici</span></td><td class="text-end fw-bold">1,900,000</td><td class="text-end">1</td><td class="text-end">1,900,000</td></tr>
-                            <tr data-settore="PA Locale"><td>16</td><td title="PROVINCIA AUTONOMA DI TRENTO">PROVINCIA AUTONOMA DI TRENTO</td><td>TRENTO</td><td><span class="badge bg-secondary badge-settore">PA Locale</span></td><td class="text-end fw-bold">1,883,640</td><td class="text-end">7</td><td class="text-end">269,091</td></tr>
-                            <tr data-settore="Utilities & Trasporti"><td>17</td><td title="RAI RADIOTELEVISIONE ITALIANA S.P.A.">RAI RADIOTELEVISIONE ITALIANA S.P.A.</td><td>ROMA</td><td><span class="badge bg-secondary badge-settore">Utilities & Trasporti</span></td><td class="text-end fw-bold">1,541,440</td><td class="text-end">6</td><td class="text-end">256,907</td></tr>
-                            <tr data-settore="Enti Pubblici Economici"><td>18</td><td title="BANCA D ITALIA">BANCA D ITALIA</td><td>ROMA</td><td><span class="badge bg-secondary badge-settore">Enti Pubblici Economici</span></td><td class="text-end fw-bold">1,409,195</td><td class="text-end">6</td><td class="text-end">234,866</td></tr>
-                            <tr data-settore="PA Centrale"><td>19</td><td title="PRESIDENZA DEL CONSIGLIO DEI MINISTRI">PRESIDENZA DEL CONSIGLIO DEI MINISTRI</td><td>ROMA</td><td><span class="badge bg-secondary badge-settore">PA Centrale</span></td><td class="text-end fw-bold">1,335,350</td><td class="text-end">3</td><td class="text-end">445,117</td></tr>
-                            <tr data-settore="PA Locale"><td>20</td><td title="COMUNE DI CATANIA">COMUNE DI CATANIA</td><td>CATANIA</td><td><span class="badge bg-secondary badge-settore">PA Locale</span></td><td class="text-end fw-bold">1,264,840</td><td class="text-end">1</td><td class="text-end">1,264,840</td></tr>
-                            <tr data-settore="Altri Enti Pubblici"><td>21</td><td title="GRIM GESTIONE RISORSE IDRICHE MOLISANE S.C.A.R.L.">GRIM GESTIONE RISORSE IDRICHE MOLISANE S.C.A.R.L.</td><td>CAMPOBASSO</td><td><span class="badge bg-secondary badge-settore">Altri Enti Pubblici</span></td><td class="text-end fw-bold">1,177,200</td><td class="text-end">1</td><td class="text-end">1,177,200</td></tr>
-                            <tr data-settore="Sanità"><td>22</td><td title="AZIENDA SANITARIA PROVINCIALE DI CALTANISSETTA">AZIENDA SANITARIA PROVINCIALE DI CALTANISSETTA</td><td>CALTANISSETTA</td><td><span class="badge bg-secondary badge-settore">Sanità</span></td><td class="text-end fw-bold">1,136,000</td><td class="text-end">3</td><td class="text-end">378,667</td></tr>
-                            <tr data-settore="Sanità"><td>23</td><td title="AZIENDA SOCIO-SANITARIA TERRITORIALE (ASST) OVEST MILANESE">AZIENDA SOCIO-SANITARIA TERRITORIALE (ASST) OVEST ...</td><td>MILANO</td><td><span class="badge bg-secondary badge-settore">Sanità</span></td><td class="text-end fw-bold">1,058,933</td><td class="text-end">1</td><td class="text-end">1,058,933</td></tr>
-                            <tr data-settore="Altri Enti Pubblici"><td>24</td><td title="LIGURIA DIGITALE S.P.A.">LIGURIA DIGITALE S.P.A.</td><td>GENOVA</td><td><span class="badge bg-secondary badge-settore">Altri Enti Pubblici</span></td><td class="text-end fw-bold">997,500</td><td class="text-end">3</td><td class="text-end">332,500</td></tr>
-                            <tr data-settore="Sanità"><td>25</td><td title="AZIENDA SOCIO SANITARIA TERRITORIALE (ASST) DEI SETTE LAGHI">AZIENDA SOCIO SANITARIA TERRITORIALE (ASST) DEI SE...</td><td>VARESE</td><td><span class="badge bg-secondary badge-settore">Sanità</span></td><td class="text-end fw-bold">980,200</td><td class="text-end">2</td><td class="text-end">490,100</td></tr>
-                            <tr data-settore="Istruzione"><td>26</td><td title="ISTITUTO TECNICO SUPERIORE PER LE TECNOLOGIE INNOVATIVE PER I BENI E LE ATTIVITA' CULTURALI - TURISMO - MARCHE">ISTITUTO TECNICO SUPERIORE PER LE TECNOLOGIE INNOV...</td><td>PESARO E URBINO</td><td><span class="badge bg-secondary badge-settore">Istruzione</span></td><td class="text-end fw-bold">937,414</td><td class="text-end">6</td><td class="text-end">156,236</td></tr>
-                            <tr data-settore="Altri Enti Pubblici"><td>27</td><td title="SANITAETSBETRIEB DER AUTONOMEN PROVINZ BOZEN">SANITAETSBETRIEB DER AUTONOMEN PROVINZ BOZEN</td><td>BOLZANO</td><td><span class="badge bg-secondary badge-settore">Altri Enti Pubblici</span></td><td class="text-end fw-bold">875,000</td><td class="text-end">1</td><td class="text-end">875,000</td></tr>
-                            <tr data-settore="Università e Ricerca"><td>28</td><td title="POLITECNICO DI BARI">POLITECNICO DI BARI</td><td>BARI</td><td><span class="badge bg-secondary badge-settore">Università e Ricerca</span></td><td class="text-end fw-bold">854,331</td><td class="text-end">3</td><td class="text-end">284,777</td></tr>
-                            <tr data-settore="Sanità"><td>29</td><td title="AZIENDA SOCIO-SANITARIA TERRITORIALE (ASST) SANTI PAOLO E CARLO">AZIENDA SOCIO-SANITARIA TERRITORIALE (ASST) SANTI ...</td><td>MILANO</td><td><span class="badge bg-secondary badge-settore">Sanità</span></td><td class="text-end fw-bold">854,020</td><td class="text-end">3</td><td class="text-end">284,673</td></tr>
-                            <tr data-settore="PA Locale"><td>30</td><td title="COMUNE SARROCH">COMUNE SARROCH</td><td>CAGLIARI</td><td><span class="badge bg-secondary badge-settore">PA Locale</span></td><td class="text-end fw-bold">811,475</td><td class="text-end">1</td><td class="text-end">811,475</td></tr>
+                            <tr data-settore="PA Centrale" data-pa="AGENZIA SPAZIALE ITALIANA"><td>1</td><td><span class="pa-link" onclick="showPAContracts(this)">AGENZIA SPAZIALE ITALIANA</span></td><td>ROMA</td><td><span class="badge bg-secondary badge-settore">PA Centrale</span></td><td class="text-end fw-bold">34,274,022</td><td class="text-end">13</td><td class="text-end">2,636,463</td></tr>
+                            <tr data-settore="PA Centrale" data-pa="MINISTERO INTERNO DIPARTIMENTO DELLA P.S."><td>2</td><td><span class="pa-link" onclick="showPAContracts(this)">MINISTERO INTERNO DIPARTIMENTO DELLA P.S.</span></td><td>ROMA</td><td><span class="badge bg-secondary badge-settore">PA Centrale</span></td><td class="text-end fw-bold">28,975,207</td><td class="text-end">3</td><td class="text-end">9,658,402</td></tr>
+                            <tr data-settore="PA Centrale" data-pa="COMMISSIONE NAZIONALE PER LE SOCIETA' E LA BORSA"><td>3</td><td><span class="pa-link" onclick="showPAContracts(this)">COMMISSIONE NAZIONALE PER LE SOCIETA E LA BORSA</span></td><td>ROMA</td><td><span class="badge bg-secondary badge-settore">PA Centrale</span></td><td class="text-end fw-bold">9,986,896</td><td class="text-end">1</td><td class="text-end">9,986,896</td></tr>
+                            <tr data-settore="Enti Pubblici Economici" data-pa="ISTITUTO CENTRALE PER LA DIGITALIZZAZIONE DEL PATRIMONIO CULTURALE -DIGITAL LIBRARY"><td>4</td><td><span class="pa-link" onclick="showPAContracts(this)">ISTITUTO CENTRALE PER LA DIGITALIZZAZIONE DEL PATR...</span></td><td>ROMA</td><td><span class="badge bg-secondary badge-settore">Enti Pubblici Economici</span></td><td class="text-end fw-bold">7,999,995</td><td class="text-end">1</td><td class="text-end">7,999,995</td></tr>
+                            <tr data-settore="Altri Enti Pubblici" data-pa="CONSIGLIO NAZIONALE DELLE RICERCHE"><td>5</td><td><span class="pa-link" onclick="showPAContracts(this)">CONSIGLIO NAZIONALE DELLE RICERCHE</span></td><td>GENOVA</td><td><span class="badge bg-secondary badge-settore">Altri Enti Pubblici</span></td><td class="text-end fw-bold">7,240,309</td><td class="text-end">21</td><td class="text-end">344,777</td></tr>
+                            <tr data-settore="PA Locale" data-pa="REGIONE LIGURIA"><td>6</td><td><span class="pa-link" onclick="showPAContracts(this)">REGIONE LIGURIA</span></td><td>GENOVA</td><td><span class="badge bg-secondary badge-settore">PA Locale</span></td><td class="text-end fw-bold">6,605,417</td><td class="text-end">1</td><td class="text-end">6,605,417</td></tr>
+                            <tr data-settore="Giustizia" data-pa="CONSIGLIO DI STATO"><td>7</td><td><span class="pa-link" onclick="showPAContracts(this)">CONSIGLIO DI STATO</span></td><td>ROMA</td><td><span class="badge bg-secondary badge-settore">Giustizia</span></td><td class="text-end fw-bold">3,349,150</td><td class="text-end">2</td><td class="text-end">1,674,575</td></tr>
+                            <tr data-settore="Difesa e Sicurezza" data-pa="UFFICIO GENERALE CENTRO RESPONSABILITA' AMMINISTRATIVA - AERONAUTICA MILITARE"><td>8</td><td><span class="pa-link" onclick="showPAContracts(this)">UFFICIO GENERALE CENTRO RESPONSABILITA' AMMINISTRA...</span></td><td>ROMA</td><td><span class="badge bg-secondary badge-settore">Difesa e Sicurezza</span></td><td class="text-end fw-bold">3,278,530</td><td class="text-end">1</td><td class="text-end">3,278,530</td></tr>
+                            <tr data-settore="PA Centrale" data-pa="MINISTERO DIFESA SEGREDIFESA /D.N.A. DIREZIONE INFORMATICA, TELEMATICA E TECNOLOGIE AVANZATE"><td>9</td><td><span class="pa-link" onclick="showPAContracts(this)">MINISTERO DIFESA SEGREDIFESA /D.N.A. DIREZIONE INF...</span></td><td>N/D</td><td><span class="badge bg-secondary badge-settore">PA Centrale</span></td><td class="text-end fw-bold">2,955,197</td><td class="text-end">1</td><td class="text-end">2,955,197</td></tr>
+                            <tr data-settore="Altri Enti Pubblici" data-pa="ENTE NAZIONALE PER L AVIAZIONE CIVILE"><td>10</td><td><span class="pa-link" onclick="showPAContracts(this)">ENTE NAZIONALE PER L AVIAZIONE CIVILE</span></td><td>ROMA</td><td><span class="badge bg-secondary badge-settore">Altri Enti Pubblici</span></td><td class="text-end fw-bold">2,701,820</td><td class="text-end">1</td><td class="text-end">2,701,820</td></tr>
+                            <tr data-settore="Sanità" data-pa="AZIENDA SANITARIA PROVINCIALE DI COSENZA"><td>11</td><td><span class="pa-link" onclick="showPAContracts(this)">AZIENDA SANITARIA PROVINCIALE DI COSENZA</span></td><td>N/D</td><td><span class="badge bg-secondary badge-settore">Sanità</span></td><td class="text-end fw-bold">2,500,000</td><td class="text-end">1</td><td class="text-end">2,500,000</td></tr>
+                            <tr data-settore="Altri Enti Pubblici" data-pa="AZIENDA REGIONALE PER L INNOVAZIONE E GLI ACQUISTI S.P.A."><td>12</td><td><span class="pa-link" onclick="showPAContracts(this)">AZIENDA REGIONALE PER L INNOVAZIONE E GLI ACQUISTI...</span></td><td>MILANO</td><td><span class="badge bg-secondary badge-settore">Altri Enti Pubblici</span></td><td class="text-end fw-bold">2,358,039</td><td class="text-end">2</td><td class="text-end">1,179,020</td></tr>
+                            <tr data-settore="Università e Ricerca" data-pa="UNIVERSITA' DEGLI STUDI DI PALERMO"><td>13</td><td><span class="pa-link" onclick="showPAContracts(this)">UNIVERSITA' DEGLI STUDI DI PALERMO</span></td><td>PALERMO</td><td><span class="badge bg-secondary badge-settore">Università e Ricerca</span></td><td class="text-end fw-bold">2,208,377</td><td class="text-end">3</td><td class="text-end">736,126</td></tr>
+                            <tr data-settore="PA Locale" data-pa="ENTE REGIONE MARCHE"><td>14</td><td><span class="pa-link" onclick="showPAContracts(this)">ENTE REGIONE MARCHE</span></td><td>ANCONA</td><td><span class="badge bg-secondary badge-settore">PA Locale</span></td><td class="text-end fw-bold">2,010,380</td><td class="text-end">2</td><td class="text-end">1,005,190</td></tr>
+                            <tr data-settore="Altri Enti Pubblici" data-pa="AGENZIA LOCALE DI SVILUPPO AREA NOLA S.C.P.A."><td>15</td><td><span class="pa-link" onclick="showPAContracts(this)">AGENZIA LOCALE DI SVILUPPO AREA NOLA S.C.P.A.</span></td><td>NAPOLI</td><td><span class="badge bg-secondary badge-settore">Altri Enti Pubblici</span></td><td class="text-end fw-bold">1,900,000</td><td class="text-end">1</td><td class="text-end">1,900,000</td></tr>
+                            <tr data-settore="PA Locale" data-pa="PROVINCIA AUTONOMA DI TRENTO"><td>16</td><td><span class="pa-link" onclick="showPAContracts(this)">PROVINCIA AUTONOMA DI TRENTO</span></td><td>TRENTO</td><td><span class="badge bg-secondary badge-settore">PA Locale</span></td><td class="text-end fw-bold">1,883,640</td><td class="text-end">7</td><td class="text-end">269,091</td></tr>
+                            <tr data-settore="Utilities & Trasporti" data-pa="RAI RADIOTELEVISIONE ITALIANA S.P.A."><td>17</td><td><span class="pa-link" onclick="showPAContracts(this)">RAI RADIOTELEVISIONE ITALIANA S.P.A.</span></td><td>ROMA</td><td><span class="badge bg-secondary badge-settore">Utilities & Trasporti</span></td><td class="text-end fw-bold">1,541,440</td><td class="text-end">6</td><td class="text-end">256,907</td></tr>
+                            <tr data-settore="Enti Pubblici Economici" data-pa="BANCA D ITALIA"><td>18</td><td><span class="pa-link" onclick="showPAContracts(this)">BANCA D ITALIA</span></td><td>ROMA</td><td><span class="badge bg-secondary badge-settore">Enti Pubblici Economici</span></td><td class="text-end fw-bold">1,409,195</td><td class="text-end">6</td><td class="text-end">234,866</td></tr>
+                            <tr data-settore="PA Centrale" data-pa="PRESIDENZA DEL CONSIGLIO DEI MINISTRI"><td>19</td><td><span class="pa-link" onclick="showPAContracts(this)">PRESIDENZA DEL CONSIGLIO DEI MINISTRI</span></td><td>ROMA</td><td><span class="badge bg-secondary badge-settore">PA Centrale</span></td><td class="text-end fw-bold">1,335,350</td><td class="text-end">3</td><td class="text-end">445,117</td></tr>
+                            <tr data-settore="PA Locale" data-pa="COMUNE DI CATANIA"><td>20</td><td><span class="pa-link" onclick="showPAContracts(this)">COMUNE DI CATANIA</span></td><td>CATANIA</td><td><span class="badge bg-secondary badge-settore">PA Locale</span></td><td class="text-end fw-bold">1,264,840</td><td class="text-end">1</td><td class="text-end">1,264,840</td></tr>
+                            <tr data-settore="Altri Enti Pubblici" data-pa="GRIM GESTIONE RISORSE IDRICHE MOLISANE S.C.A.R.L."><td>21</td><td><span class="pa-link" onclick="showPAContracts(this)">GRIM GESTIONE RISORSE IDRICHE MOLISANE S.C.A.R.L.</span></td><td>CAMPOBASSO</td><td><span class="badge bg-secondary badge-settore">Altri Enti Pubblici</span></td><td class="text-end fw-bold">1,177,200</td><td class="text-end">1</td><td class="text-end">1,177,200</td></tr>
+                            <tr data-settore="Sanità" data-pa="AZIENDA SANITARIA PROVINCIALE DI CALTANISSETTA"><td>22</td><td><span class="pa-link" onclick="showPAContracts(this)">AZIENDA SANITARIA PROVINCIALE DI CALTANISSETTA</span></td><td>CALTANISSETTA</td><td><span class="badge bg-secondary badge-settore">Sanità</span></td><td class="text-end fw-bold">1,136,000</td><td class="text-end">3</td><td class="text-end">378,667</td></tr>
+                            <tr data-settore="Sanità" data-pa="AZIENDA SOCIO-SANITARIA TERRITORIALE (ASST) OVEST MILANESE"><td>23</td><td><span class="pa-link" onclick="showPAContracts(this)">AZIENDA SOCIO-SANITARIA TERRITORIALE (ASST) OVEST ...</span></td><td>MILANO</td><td><span class="badge bg-secondary badge-settore">Sanità</span></td><td class="text-end fw-bold">1,058,933</td><td class="text-end">1</td><td class="text-end">1,058,933</td></tr>
+                            <tr data-settore="Altri Enti Pubblici" data-pa="LIGURIA DIGITALE S.P.A."><td>24</td><td><span class="pa-link" onclick="showPAContracts(this)">LIGURIA DIGITALE S.P.A.</span></td><td>GENOVA</td><td><span class="badge bg-secondary badge-settore">Altri Enti Pubblici</span></td><td class="text-end fw-bold">997,500</td><td class="text-end">3</td><td class="text-end">332,500</td></tr>
+                            <tr data-settore="Sanità" data-pa="AZIENDA SOCIO SANITARIA TERRITORIALE (ASST) DEI SETTE LAGHI"><td>25</td><td><span class="pa-link" onclick="showPAContracts(this)">AZIENDA SOCIO SANITARIA TERRITORIALE (ASST) DEI SE...</span></td><td>VARESE</td><td><span class="badge bg-secondary badge-settore">Sanità</span></td><td class="text-end fw-bold">980,200</td><td class="text-end">2</td><td class="text-end">490,100</td></tr>
+                            <tr data-settore="Istruzione" data-pa="ISTITUTO TECNICO SUPERIORE PER LE TECNOLOGIE INNOVATIVE PER I BENI E LE ATTIVITA' CULTURALI - TURISMO - MARCHE"><td>26</td><td><span class="pa-link" onclick="showPAContracts(this)">ISTITUTO TECNICO SUPERIORE PER LE TECNOLOGIE INNOV...</span></td><td>PESARO E URBINO</td><td><span class="badge bg-secondary badge-settore">Istruzione</span></td><td class="text-end fw-bold">937,414</td><td class="text-end">6</td><td class="text-end">156,236</td></tr>
+                            <tr data-settore="Altri Enti Pubblici" data-pa="SANITAETSBETRIEB DER AUTONOMEN PROVINZ BOZEN"><td>27</td><td><span class="pa-link" onclick="showPAContracts(this)">SANITAETSBETRIEB DER AUTONOMEN PROVINZ BOZEN</span></td><td>BOLZANO</td><td><span class="badge bg-secondary badge-settore">Altri Enti Pubblici</span></td><td class="text-end fw-bold">875,000</td><td class="text-end">1</td><td class="text-end">875,000</td></tr>
+                            <tr data-settore="Università e Ricerca" data-pa="POLITECNICO DI BARI"><td>28</td><td><span class="pa-link" onclick="showPAContracts(this)">POLITECNICO DI BARI</span></td><td>BARI</td><td><span class="badge bg-secondary badge-settore">Università e Ricerca</span></td><td class="text-end fw-bold">854,331</td><td class="text-end">3</td><td class="text-end">284,777</td></tr>
+                            <tr data-settore="Sanità" data-pa="AZIENDA SOCIO-SANITARIA TERRITORIALE (ASST) SANTI PAOLO E CARLO"><td>29</td><td><span class="pa-link" onclick="showPAContracts(this)">AZIENDA SOCIO-SANITARIA TERRITORIALE (ASST) SANTI ...</span></td><td>MILANO</td><td><span class="badge bg-secondary badge-settore">Sanità</span></td><td class="text-end fw-bold">854,020</td><td class="text-end">3</td><td class="text-end">284,673</td></tr>
+                            <tr data-settore="PA Locale" data-pa="COMUNE SARROCH"><td>30</td><td><span class="pa-link" onclick="showPAContracts(this)">COMUNE SARROCH</span></td><td>CAGLIARI</td><td><span class="badge bg-secondary badge-settore">PA Locale</span></td><td class="text-end fw-bold">811,475</td><td class="text-end">1</td><td class="text-end">811,475</td></tr>
                         </tbody>
                     </table>
                 </div>
@@ -471,6 +500,25 @@
                 <div>
                     <strong>Outlier Identificati</strong><br>
                     Rilevati <span class="badge bg-primary">1</span> contratti con importi superiori a 3 deviazioni standard dalla media (> €29,072,538).
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Contratti PA -->
+    <div class="modal fade" id="contractsModal" tabindex="-1" aria-labelledby="contractsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title" id="contractsModalLabel"><i class="bi bi-building"></i> Contratti</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body modal-body-scroll" id="contractsModalBody">
+                    <!-- Contenuto dinamico -->
+                </div>
+                <div class="modal-footer">
+                    <span id="contractsModalStats" class="text-muted me-auto"></span>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
                 </div>
             </div>
         </div>
@@ -862,6 +910,62 @@
                 }
             });
         });
+
+        // ============================================
+        // MODAL CONTRATTI PA
+        // ============================================
+        const contractsModal = new bootstrap.Modal(document.getElementById('contractsModal'));
+
+        function showPAContracts(element) {
+            const row = element.closest('tr');
+            const paName = row.dataset.pa;
+
+            // Cerca contratti per questa PA
+            const paContracts = contractsData.filter(c =>
+                c.denominazione_amministrazione_appaltante.toUpperCase().includes(paName.toUpperCase()) ||
+                paName.toUpperCase().includes(c.denominazione_amministrazione_appaltante.toUpperCase().substring(0, 30))
+            );
+
+            // Ordina per importo decrescente
+            paContracts.sort((a, b) => b.importo_lotto - a.importo_lotto);
+
+            // Calcola totale
+            const totalValue = paContracts.reduce((sum, c) => sum + c.importo_lotto, 0);
+
+            // Aggiorna titolo modal
+            document.getElementById('contractsModalLabel').innerHTML =
+                `<i class="bi bi-building"></i> ${paName.substring(0, 50)}${paName.length > 50 ? '...' : ''}`;
+
+            // Genera contenuto
+            let html = '';
+            if (paContracts.length === 0) {
+                html = '<div class="text-center text-muted py-4"><i class="bi bi-search" style="font-size: 2rem;"></i><p class="mt-2">Nessun contratto trovato</p></div>';
+            } else {
+                html = paContracts.map((c, i) => `
+                    <div class="contract-item">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <div>
+                                <span class="cig-badge">${c.cig}</span>
+                                <span class="badge bg-light text-dark ms-2">${c.anno_pubblicazione}</span>
+                                <span class="badge ${c.is_pnrr ? 'bg-success' : 'bg-secondary'} ms-1">${c.is_pnrr ? 'PNRR' : ''}</span>
+                            </div>
+                            <span class="text-success fw-bold fs-5">${formatEuro(c.importo_lotto)}</span>
+                        </div>
+                        <div class="text-muted small mb-2">${c.oggetto_lotto}</div>
+                        <div class="d-flex flex-wrap gap-2">
+                            <span class="badge bg-primary">${c.categoria_ai}</span>
+                            <span class="badge bg-light text-dark"><i class="bi bi-geo-alt"></i> ${c.provincia || 'N/D'}</span>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            document.getElementById('contractsModalBody').innerHTML = html;
+            document.getElementById('contractsModalStats').innerHTML =
+                `<strong>${paContracts.length}</strong> contratti | Totale: <strong class="text-success">${formatEuro(totalValue)}</strong>`;
+
+            contractsModal.show();
+        }
 
         // ============================================
         // FILTRI TABELLA TOP 30
