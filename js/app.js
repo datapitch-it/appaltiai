@@ -1,7 +1,7 @@
 // Dashboard Appalti IA ANAC 2023-2025
 // app.js - Main application logic
 
-let contractsData = [];
+window.contractsData = [];
 
 // Colors palette
 const colors = [
@@ -18,14 +18,63 @@ const formatMilioni = (value) => '€' + (value/1000000).toFixed(1) + 'M';
 document.addEventListener('DOMContentLoaded', async () => {
     try {
         const response = await fetch('data/contracts.json');
-        contractsData = await response.json();
+        window.contractsData = await response.json();
+        updateKPIs();
         initCharts();
         initSearch();
         initFilters();
+        initTop30Table();
     } catch (error) {
         console.error('Error loading data:', error);
     }
 });
+
+// Update KPIs from data
+function updateKPIs() {
+    const data = window.contractsData;
+    const totalContratti = data.length;
+    const totalValore = data.reduce((sum, c) => sum + (parseFloat(c.importo_complessivo_gara) || 0), 0);
+    const paSet = new Set(data.map(c => c.cf_amministrazione_appaltante).filter(Boolean));
+    const provSet = new Set(data.map(c => c.provincia).filter(p => p && p !== 'N/D'));
+    const pnrrCount = data.filter(c => c.is_pnrr).length;
+    const pnrrPct = totalContratti > 0 ? ((pnrrCount / totalContratti) * 100).toFixed(1) : 0;
+    const media = totalContratti > 0 ? totalValore / totalContratti : 0;
+
+    document.getElementById('kpiContratti').textContent = totalContratti.toLocaleString('it-IT');
+    document.getElementById('kpiValore').textContent = (totalValore / 1e6).toFixed(1) + 'M';
+    document.getElementById('kpiPA').textContent = paSet.size.toLocaleString('it-IT');
+    document.getElementById('kpiMedia').textContent = Math.round(media / 1000).toLocaleString('it-IT') + 'K';
+    document.getElementById('kpiPNRR').textContent = pnrrCount;
+    document.getElementById('kpiPNRRLabel').textContent = `PNRR (${pnrrPct}%)`;
+    document.getElementById('kpiProvince').textContent = provSet.size;
+
+    // Update search count
+    const searchCount = document.getElementById('searchCount');
+    if (searchCount) searchCount.textContent = totalContratti.toLocaleString('it-IT');
+
+    // Update stats info
+    const statsInfo = document.getElementById('statsInfo');
+    if (statsInfo) statsInfo.textContent = `Record totali: ${totalContratti.toLocaleString('it-IT')} | Validati: ${totalContratti.toLocaleString('it-IT')} | Errori corretti: 1`;
+
+    // Update last update date
+    const lastUpdate = document.getElementById('lastUpdate');
+    if (lastUpdate) lastUpdate.textContent = new Date().toLocaleDateString('it-IT');
+}
+
+// Generate Top 30 PA table
+function initTop30Table() {
+    const byPA = {};
+    window.contractsData.forEach(c => {
+        const pa = c.denominazione_amministrazione_appaltante || 'N/D';
+        if (!byPA[pa]) byPA[pa] = { total: 0, count: 0, provincia: c.provincia || 'N/D', settore: c.settore_pa || 'Altri Enti Pubblici' };
+        byPA[pa].total += parseFloat(c.importo_complessivo_gara) || 0;
+        byPA[pa].count++;
+    });
+    const top30 = Object.entries(byPA).sort((a, b) => b[1].total - a[1].total).slice(0, 30);
+    document.getElementById('paTableBody').innerHTML = top30.map(([pa, data], i) =>
+        `<tr data-settore="${data.settore}" data-pa="${pa}"><td>${i + 1}</td><td><span class="pa-link" onclick="showPAContracts(this)">${pa.length > 50 ? pa.substring(0, 47) + '...' : pa}</span></td><td>${data.provincia}</td><td><span class="badge bg-secondary badge-settore">${data.settore}</span></td><td class="text-end fw-bold">${Math.round(data.total).toLocaleString('it-IT')}</td><td class="text-end">${data.count}</td><td class="text-end">${Math.round(data.total / data.count).toLocaleString('it-IT')}</td></tr>`
+    ).join('');
+}
 
 // Calculate aggregations from data
 function calculateStats() {
@@ -35,12 +84,12 @@ function calculateStats() {
     const byYear = {};
     let pnrrValue = 0, nonPnrrValue = 0;
 
-    contractsData.forEach(c => {
-        const pa = c.DENOMINAZIONE_AMMINISTRAZIONE || 'N/D';
+    window.contractsData.forEach(c => {
+        const pa = c.denominazione_amministrazione_appaltante || 'N/D';
         const cat = c.categoria_ai || 'Altre applicazioni IA';
         const set = c.settore_pa || 'Altri Enti Pubblici';
-        const importo = parseFloat(c.IMPORTO_COMPLESSIVO_GARA) || 0;
-        const year = c.ANNO_PUBBLICAZIONE || '2025';
+        const importo = parseFloat(c.importo_complessivo_gara) || 0;
+        const year = c.anno_pubblicazione || '2025';
 
         byPA[pa] = (byPA[pa] || 0) + importo;
         byCategoria[cat] = (byCategoria[cat] || 0) + importo;
@@ -172,10 +221,10 @@ function initSearch() {
             return;
         }
 
-        const matches = contractsData.filter(c => {
+        const matches = window.contractsData.filter(c => {
             const searchText = [
-                c.CIG, c.DENOMINAZIONE_AMMINISTRAZIONE, c.OGGETTO_LOTTO,
-                c.COD_ISTAT_PROVINCIA_SEDE, c.categoria_ai, c.settore_pa
+                c.cig, c.denominazione_amministrazione_appaltante, c.oggetto_lotto,
+                c.provincia, c.categoria_ai, c.settore_pa
             ].join(' ').toLowerCase();
             return searchText.includes(query);
         }).slice(0, 10);
@@ -184,11 +233,11 @@ function initSearch() {
             autocomplete.innerHTML = matches.map((c, i) => `
                 <div class="autocomplete-item" data-index="${i}">
                     <div class="d-flex justify-content-between">
-                        <span class="cig">${c.CIG}</span>
-                        <span class="badge bg-success">${formatEuro(parseFloat(c.IMPORTO_COMPLESSIVO_GARA) || 0)}</span>
+                        <span class="cig">${c.cig}</span>
+                        <span class="badge bg-success">${formatEuro(parseFloat(c.importo_complessivo_gara) || 0)}</span>
                     </div>
-                    <div class="pa">${c.DENOMINAZIONE_AMMINISTRAZIONE || 'N/D'}</div>
-                    <div class="oggetto">${(c.OGGETTO_LOTTO || '').substring(0, 80)}...</div>
+                    <div class="pa">${c.denominazione_amministrazione_appaltante || 'N/D'}</div>
+                    <div class="oggetto">${(c.oggetto_lotto || '').substring(0, 80)}...</div>
                 </div>
             `).join('');
             autocomplete.style.display = 'block';
@@ -235,8 +284,8 @@ function showFullResults(query) {
     const searchResults = document.getElementById('searchResults');
     if (query.length < 3) return;
 
-    const matches = contractsData.filter(c => {
-        const searchText = [c.CIG, c.DENOMINAZIONE_AMMINISTRAZIONE, c.OGGETTO_LOTTO, c.COD_ISTAT_PROVINCIA_SEDE, c.categoria_ai, c.settore_pa].join(' ').toLowerCase();
+    const matches = window.contractsData.filter(c => {
+        const searchText = [c.cig, c.denominazione_amministrazione_appaltante, c.oggetto_lotto, c.provincia, c.categoria_ai, c.settore_pa].join(' ').toLowerCase();
         return searchText.includes(query);
     });
 
@@ -252,15 +301,15 @@ function showFullResults(query) {
         ${matches.slice(0, 50).map(c => `
             <div class="result-card">
                 <div class="d-flex justify-content-between align-items-start mb-2">
-                    <span class="cig-badge">${highlight(c.CIG)}</span>
-                    <span class="importo">${formatEuro(parseFloat(c.IMPORTO_COMPLESSIVO_GARA) || 0)}</span>
+                    <span class="cig-badge">${highlight(c.cig)}</span>
+                    <span class="importo">${formatEuro(parseFloat(c.importo_complessivo_gara) || 0)}</span>
                 </div>
-                <div class="fw-bold mb-1">${highlight(c.DENOMINAZIONE_AMMINISTRAZIONE || 'N/D')}</div>
-                <div class="small text-muted mb-1">${highlight(c.OGGETTO_LOTTO || '')}</div>
+                <div class="fw-bold mb-1">${highlight(c.denominazione_amministrazione_appaltante || 'N/D')}</div>
+                <div class="small text-muted mb-1">${highlight(c.oggetto_lotto || '')}</div>
                 <div class="d-flex gap-2 flex-wrap">
                     <span class="badge bg-primary">${c.categoria_ai || 'N/D'}</span>
                     <span class="badge bg-secondary">${c.settore_pa || 'N/D'}</span>
-                    <span class="badge bg-info">${c.COD_ISTAT_PROVINCIA_SEDE || 'N/D'}</span>
+                    <span class="badge bg-info">${c.provincia || 'N/D'}</span>
                     ${c.is_pnrr ? '<span class="badge bg-success">PNRR</span>' : ''}
                 </div>
             </div>
@@ -307,23 +356,40 @@ function initFilters() {
 // Show PA contracts in modal
 function showPAContracts(element) {
     const paName = element.closest('tr').dataset.pa;
-    const contracts = contractsData.filter(c => c.DENOMINAZIONE_AMMINISTRAZIONE === paName);
+    const contracts = window.contractsData.filter(c => c.denominazione_amministrazione_appaltante === paName);
 
     document.getElementById('paModalLabel').textContent = paName;
-    document.getElementById('paContractsList').innerHTML = contracts.map(c => `
+    document.getElementById('paContractsList').innerHTML = contracts.map(c => {
+        const importoGara = parseFloat(c.importo_complessivo_gara) || 0;
+        const importoLotto = parseFloat(c.importo_lotto) || 0;
+        const nLotti = c.n_lotti_componenti || 1;
+        const dataPub = c.data_pubblicazione ? new Date(c.data_pubblicazione).toLocaleDateString('it-IT', {day:'numeric',month:'long',year:'numeric'}) : 'N/D';
+        const riservato = c.TIPO_APPALTO_RISERVATO && c.TIPO_APPALTO_RISERVATO !== 'nan' ? c.TIPO_APPALTO_RISERVATO : null;
+        return `
         <div class="contract-item">
             <div class="d-flex justify-content-between align-items-start mb-2">
-                <span class="cig-badge">${c.CIG}</span>
-                <span class="text-success fw-bold">${formatEuro(parseFloat(c.IMPORTO_COMPLESSIVO_GARA) || 0)}</span>
+                <span class="cig-badge">${c.cig}</span>
+                <span class="text-success fw-bold">${formatEuro(importoGara)}</span>
             </div>
-            <div class="small mb-1">${c.OGGETTO_LOTTO || 'N/D'}</div>
+            <div class="fw-bold small mb-1">${c.oggetto_gara || 'N/D'} <span class="text-muted">(gara ${c.numero_gara || 'N/D'})</span></div>
+            <div class="small mb-1"><strong>Lotto:</strong> ${c.oggetto_lotto || 'N/D'}</div>
+            <table class="table table-sm table-borderless small mb-2" style="font-size:0.8rem">
+                <tr><td class="text-muted" style="width:140px">Importo gara</td><td>${formatEuro(importoGara)} (${nLotti} lotti)</td></tr>
+                <tr><td class="text-muted">Importo lotto</td><td>${formatEuro(importoLotto)}</td></tr>
+                <tr><td class="text-muted">Tipo contratto</td><td>${c.oggetto_principale_contratto || 'N/D'} - ${c.tipo_scelta_contraente || 'N/D'}</td></tr>
+                <tr><td class="text-muted">CPV</td><td>${c.cod_cpv || 'N/D'} (${c.descrizione_cpv || 'N/D'})</td></tr>
+                <tr><td class="text-muted">Provincia</td><td>${c.provincia || 'N/D'}</td></tr>
+                <tr><td class="text-muted">Pubblicazione</td><td>${dataPub}</td></tr>
+                <tr><td class="text-muted">Stato</td><td>${c.stato || 'N/D'}</td></tr>
+                <tr><td class="text-muted">PNRR</td><td>${c.is_pnrr ? 'Sì' : 'No'}</td></tr>
+                ${riservato ? `<tr><td class="text-muted">Appalto riservato</td><td>${riservato}</td></tr>` : ''}
+            </table>
             <div class="d-flex gap-1 flex-wrap">
                 <span class="badge bg-primary" style="font-size:0.7rem">${c.categoria_ai || 'N/D'}</span>
-                <span class="badge bg-info" style="font-size:0.7rem">${c.ANNO_PUBBLICAZIONE || 'N/D'}</span>
-                ${c.is_pnrr ? '<span class="badge bg-success" style="font-size:0.7rem">PNRR</span>' : ''}
+                <span class="badge bg-secondary" style="font-size:0.7rem">${c.settore_pa || 'N/D'}</span>
             </div>
-        </div>
-    `).join('');
+        </div>`;
+    }).join('');
 
     new bootstrap.Modal(document.getElementById('paModal')).show();
 }
